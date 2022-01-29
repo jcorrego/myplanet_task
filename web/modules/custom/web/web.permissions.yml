@@ -1,0 +1,3 @@
+administer web:
+  title: 'Administer web settings'
+  restrict access: true

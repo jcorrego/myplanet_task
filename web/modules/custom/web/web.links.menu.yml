@@ -1,0 +1,10 @@
+entity.web.settings:
+  title: 'Web'
+  description: 'Configure a Web entity type.'
+  route_name:  entity.web.settings
+  parent: system.admin_structure
+entity.web.collection:
+  title: 'Webs'
+  description: 'List of webs.'
+  route_name: entity.web.collection
+  parent: system.admin_content

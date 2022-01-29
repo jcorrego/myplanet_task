@@ -1,0 +1,7 @@
+entity.web.settings:
+  path: 'admin/structure/web'
+  defaults:
+    _form: '\Drupal\web\Form\WebSettingsForm'
+    _title: 'Web'
+  requirements:
+    _permission: 'administer web'

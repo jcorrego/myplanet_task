@@ -1,0 +1,8 @@
+name: myplanet_movies
+type: module
+description: Movies development challenge module
+core_version_requirement: ^9 || ^10
+package: Myplanet
+
+dependencies:
+  - drupal:views

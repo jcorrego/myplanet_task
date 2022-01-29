@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Provides a web entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+use Drupal\web\Entity\Web;
+
+/**
+ * Implements hook_theme().
+ */
+function web_theme() {
+  return [
+    'web' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for web templates.
+ *
+ * Default template: web.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the web information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_web(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function web_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish webs.
+      $storage = \Drupal::entityTypeManager()->getStorage('web');
+      $web_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->execute();
+      foreach ($storage->loadMultiple($web_ids) as $web) {
+        $web->set('status', FALSE);
+        $web->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize webs.
+      $storage = \Drupal::entityTypeManager()->getStorage('web');
+      $web_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->execute();
+      foreach ($storage->loadMultiple($web_ids) as $web) {
+        $web->setOwnerId(0);
+        $web->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function web_user_predelete(UserInterface $account) {
+  // Delete webs.
+  $storage = \Drupal::entityTypeManager()->getStorage('web');
+  $web_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $webs = $storage->loadMultiple($web_ids);
+  $storage->delete($webs);
+}

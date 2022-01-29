@@ -1,0 +1,70 @@
+{
+  /* CONFIGURACIONES GENERALES DEL EDITOR */
+  "breadcrumbs.enabled": true,
+  "css.validate": true,
+  "html.format.enable": true,
+  "html.format.wrapLineLength": 80,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.tabSize": 2,
+  "editor.autoIndent": "full",
+  "editor.insertSpaces": true,
+  "editor.formatOnPaste": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.wordWrapColumn": 80,
+  "editor.wordWrap": "off",
+  "editor.detectIndentation": true,
+  "editor.rulers": [
+    80
+  ],
+  "files.associations": {
+    "*.inc": "php",
+    "*.module": "php",
+    "*.install": "php",
+    "*.theme": "php",
+    "*.profile": "php",
+    "*.tpl.php": "php",
+    "*.test": "php",
+    "*.php": "php",
+    "*.twig": "html",
+    "*.info": "ini",
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+  "files.autoSave": "onFocusChange",
+  "emmet.includeLanguages": {
+    "twig": "html"
+  },
+  /* PHP Code Sniffer */
+  "phpcs.enable": true,
+  "phpcs.standard": "Drupal,DrupalPractice",
+  "phpcbf.onsave": true,
+  "phpcbf.standard": "Drupal,DrupalPractice",
+  "phpcs.executablePath": "/Users/jcorrego/.composer/vendor/bin/phpcs",
+  "phpcbf.executablePath": "/Users/jcorrego/.composer/vendor/bin/phpcbf",
+  /* PHP Validation */
+  "php.validate.enable": true,
+  "php.validate.executablePath": "/usr/local/bin/php",
+  "php.validate.run": "onType",
+  /* PHP DocBlocks */
+  "php-docblocker.gap": true,
+  "php-docblocker.useShortNames": true,
+  "php-docblocker.author": {
+    "name": "Juan Carlos Orrego",
+    "email": "jcorrego@gmail.com"
+  },
+  "php-docblocker.extra": [
+    "@author Juan Carlos Orrego",
+    "@version Unknown",
+    "@todo Unknown"
+  ],
+  /* Empty Indent */
+  "emptyIndent.removeIndent": true,
+  "emptyIndent.highlightIndent": false,
+  "emptyIndent.highlightColor": "rgba(246,36,89,0.6)",
+  /* GIT */
+  "git.showPushSuccessNotification": true,
+  "php.suggest.basic": false,
+  "intelephense.environment.documentRoot": "web/index.php",
+  "intelephense.format.braces": "k&r",
+}
